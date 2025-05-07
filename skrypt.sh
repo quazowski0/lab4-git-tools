@@ -25,3 +25,22 @@ if [[ "$1" == "--help" || "$1" == "-h" ]]; then
     echo "--help (-h)          Wyświetla pomoc"
     exit 0
 fi
+
+# Flaga --init
+if [[ "$1" == "--init" ]]; then
+    git clone https://github.com/quazowski0/lab4-git-tools.git
+    export PATH=$PATH:$(pwd)/lab4-git-tools
+    echo "Repozytorium sklonowane i ścieżka dodana do PATH"
+    exit 0
+fi
+
+# Flaga --error (-e)
+if [[ "$1" == "--error" || "$1" == "-e" ]]; then
+    num_files=${2:-100}
+    for ((x=1; x<=$num_files; x++)); do
+        mkdir -p error$x
+        echo "Nazwa pliku: error$x.txt" > error$x/error$x.txt
+        echo "Data: $(date)" >> error$x/error$x.txt
+    done
+    exit 0
+fi
